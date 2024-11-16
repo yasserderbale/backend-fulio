@@ -12,14 +12,14 @@ app.post("/contact", async (req, res) => {
     const { name, email, message } = req.body; // هنا نستلم البيانات من req.body مباشرة
     console.log(req.body)
     const transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com', // أو حسب مزود بريدك
-        port:465,
-        secure:true,
-        auth: {
-          user: 'drbalyasser@gmail.com',  // استبدلها ببريدك
-          pass: 'syra ifbt lxqk xhtj'    // استبدلها بكلمة السر
-        }
-      });
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true,
+      auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS
+      }
+  });
       const mailOptions = {
         from: email,
         to: 'drbalyasser@gmail.com', // بريدك الذي سترسل إليه الرسائل
