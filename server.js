@@ -9,7 +9,6 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
-const port = 5000;
 app.post("/contact", async (req, res) => {
     const { name, email, message } = req.body; // هنا نستلم البيانات من req.body مباشرة
     console.log(req.body)
@@ -38,6 +37,8 @@ app.post("/contact", async (req, res) => {
 
 
   
+const port = process.env.PORT || 5000; // إذا لم يتم تعيين البورت من Render، سيتم استخدام البورت 5000 بشكل افتراضي.
 app.listen(port, () => {
     console.log("Server is running on port", port);
 });
+
